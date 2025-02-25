@@ -4,6 +4,8 @@ package com.example.CampaignManagement.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "scheduled_tasks")
 @Data
@@ -14,35 +16,19 @@ public class ScheduledTasks {
     @Column(name = "scheduled_task_id")
     private Long id;
 
-    @Column(name = "customer_scope")
-    private String CustomerScope;
+    @Column(name = "campaign_type", nullable = false)
+    private String campaignType;
 
-    @Column(name = "menu",nullable = false)
-    private String menu;
+    @Column(nullable = false)
+    private String offer;
 
-    @Column(name = "platform", nullable = false)
-    private String platform;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CampaignStatus status;
 
-    @Column(name = "msisdn",nullable = false)
-    private String msisdn;
-
-    @Column(name = "campaign_short_title",nullable = false)
-    private String CampaignShortTitle;
-
-    @Column(name = "dashboard",nullable = false)
-    private boolean dashboard;
-
-    @Column(name = "popup",nullable = false)
-    private boolean popup;
-
-    @Column(name = "offer_page",nullable = false)
-    private boolean offerPage;
-
-    @Column(name = "confirmation_page",nullable = false)
-    private boolean confirmationPage;
-
-    @Column(name = "result_page",nullable = false)
-    private boolean resultPage;
+    @Column(name = "date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
 
 }

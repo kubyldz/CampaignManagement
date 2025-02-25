@@ -93,18 +93,7 @@ public class CampaignController {
         return ResponseEntity.ok(campaignService.getAllCampaigns());
     }
 
-    @GetMapping("/getByCampaignType")
-    public ResponseEntity<List<Campaign>> getCampaignsByType(@RequestParam String campaignType) {
-        try {
-            if ("ALL".equalsIgnoreCase(campaignType)) {
-                return ResponseEntity.ok(campaignService.getAllCampaigns());
-            }
-            CampaignType type = CampaignType.valueOf(campaignType.toUpperCase());
-            return ResponseEntity.ok(campaignService.getCampaignsByType(type));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(Collections.emptyList());
-        }
-    }
+
 
     @GetMapping(value = "/export", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> exportCampaignsToExcel() {

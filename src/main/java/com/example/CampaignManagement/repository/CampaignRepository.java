@@ -14,6 +14,5 @@ public interface CampaignRepository extends JpaRepository<Campaign, Long> {
 
     List<Campaign> findByServiceType(ServiceType serviceType);
 
-    List<Campaign> findByCampaignType(CampaignType campaignType);
 
 }

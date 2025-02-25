@@ -1,20 +1,21 @@
 package com.example.CampaignManagement.service;
 
-import com.example.CampaignManagement.model.Campaign;
-import com.example.CampaignManagement.model.CampaignStatus;
-import com.example.CampaignManagement.model.ServiceType;
-import com.example.CampaignManagement.repository.CampaignRepository;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.EnumSet;
-import java.util.Comparator;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.example.CampaignManagement.model.Campaign;
+import com.example.CampaignManagement.model.CampaignStatus;
+import com.example.CampaignManagement.model.ServiceType;
+import com.example.CampaignManagement.repository.CampaignRepository;
 
 @Service
 @Transactional
@@ -126,9 +127,6 @@ public class CampaignService {
         if (campaign.getCampaignType() == null) {
             return Optional.of("Campaign type is required");
         }
-        if (!EnumSet.of(CampaignType.SEASONAL, CampaignType.STANDARD).contains(campaign.getCampaignType())) {
-            return Optional.of("Invalid campaign type. Must be either SEASONAL or STANDARD");
-        }
         return Optional.empty();
     }
 
@@ -173,7 +171,5 @@ public class CampaignService {
         return campaignRepository.findByServiceType(serviceType);
     }
 
-    public List<Campaign> getCampaignsByType(CampaignType campaignType) {
-        return campaignRepository.findByCampaignType(campaignType);
-    }
+
 }

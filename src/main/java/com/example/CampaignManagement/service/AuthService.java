@@ -1,6 +1,5 @@
 package com.example.CampaignManagement.service;
 
-import com.example.CampaignManagement.model.User;
 import com.example.CampaignManagement.repository.UserRepository;
 import com.example.CampaignManagement.security.JwtUtil;
 
